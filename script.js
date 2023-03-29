@@ -18,6 +18,25 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterNameText = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+
+const weapons = [
+  {
+    name:"stick",
+    power:5
+  },
+  {
+    name:"dagger",
+    power:5
+  },
+  {
+    name:"hammer",
+    power:5
+  },
+  {
+    name:"sword",
+    power:100
+  }
+]
 const locations = [
   {
     name:"town square",
@@ -58,24 +77,63 @@ function goTown(){
   update(locations[0]);
 }
 
-
 function goStore(){
   update(locations[1]);
 }
 function goCave(){
-  
+  update(locations[2]);
 }
 function fightDragon(){
   
 }
 
-
 function buyHealth(){
-  
+
+  if(gold>=10){
+    gold -= 10;
+    health += 10;
+    goldText.innerText = gold;
+    healthText.innerText = health;
+  }else{
+    text.innerText = "You need more gold to buy health";
+  }
 }
 
 function buyWeapon(){
-  
+  if(currentWeapon < weapons.length - 1{
+    if(gold>=30){
+      gold -= 30;
+      currentWeapon++; //we are going to move up by one every time in the weapon list
+      goldText.innerText = gold;
+      let newWeapon = weapons[currentWeapon].name;
+      text.innerText = "You have the new weapon: "+newWeapon+".";
+      inventory.push(newWeapon); //add the weapon in the inventory
+      text.innerText = "In your inventory you have: "+inventory+".";
+    }else{
+      text.innerText = "You need more gold to buy weapon";
+    }
+  }else{
+    text.innerText = "You have all the weapons available";
+    button2.innerText = "Sell weapon for 15 golds";
+    button2.onclick = sellWeapon;
+  }
 }
 
+function sellWeapon(){
+  if(inventory.length > 1){ //if there is anything to sell
+    gold += 15;
+    goldText.innerText = gold;
+    let currentWeapon = inventory.shift(); //remove first elem of inventory and puts it in the variable
+    text.innerText = "You sold a "+ currentWeapon +".";
+  }else {
+    text.innerText = "You should not sell your only weapon.";
+  }
+}
+
+function fightSlime(){
+  
+}
+function fightBeast(){
+  
+}
 
